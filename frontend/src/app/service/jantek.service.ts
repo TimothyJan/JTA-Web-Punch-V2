@@ -56,7 +56,7 @@ export class JantekService {
     return data;
   }
 
-  get_wp_getpunchcdg() {
+  get_wp_getpunchcfg() {
     let data = {
       "status": "OK",
       "logintype": 1,
@@ -111,5 +111,8 @@ export class JantekService {
       "PC": 7
       }
     }
+    return data;
   }
+
+
 }

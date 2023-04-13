@@ -22,13 +22,17 @@ import { MdbValidationModule } from 'mdb-angular-ui-kit/validation';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './components/header/header.component';
-import { DateTimeComponent } from './components/date-time/date-time.component';
+import { DateTimeComponent } from './components/header/date-time/date-time.component';
+import { LoginComponent } from './components/body/login/login.component';
+import { BodyComponent } from './components/body/body.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    DateTimeComponent
+    DateTimeComponent,
+    LoginComponent,
+    BodyComponent
   ],
   imports: [
     BrowserModule,
