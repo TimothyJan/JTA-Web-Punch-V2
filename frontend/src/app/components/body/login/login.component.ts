@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AlertService } from 'src/app/components/header/_alert';
 import { LoginInfo } from 'src/app/models/login-info';
 import { JantekService } from 'src/app/service/jantek.service';
 
@@ -14,6 +15,7 @@ export class LoginComponent implements OnInit{
 
   constructor(
     private _jantekService: JantekService,
+    public alertService: AlertService
     ) {}
 
   ngOnInit(): void {
@@ -49,9 +51,8 @@ export class LoginComponent implements OnInit{
     this.cardNumber = (<HTMLInputElement>document.getElementById("Card-Number")).value;
     var loginInfo = new LoginInfo(this.employeeNumber, this.cardNumber)
     if (this._jantekService.login(loginInfo)) {
-      console.log("Correct Info");
     } else {
-      console.log("Wrong info");
+      this.alertService.error("Incorrect login");
     }
   }
 

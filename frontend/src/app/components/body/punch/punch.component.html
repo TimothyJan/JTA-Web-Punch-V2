@@ -1,0 +1,36 @@
+<div [ngSwitch]="clockType">
+  <div *ngSwitchCase="'In and Out'">
+    <div class="container py-2">
+      <div class="row d-flex align-items-center justify-content-center h-100">
+        <div class="col-md-6 col-lg-10">
+          <div class="d-flex align-items-center justify-content-around mb-4">
+            <button
+              class="btn btn-lg btn-primary"
+              (click)="onIn()">
+              In
+            </button>
+            <button
+              class="btn btn-lg btn-primary"
+              (click)="onOut()">
+              Out
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngSwitchCase="'Swipe and Go'">
+    <div class="container py-2">
+      <div class="row d-flex align-items-center justify-content-center h-100">
+        <div class="col-md-7 col-lg-5 col-xl-5">
+          <div class="d-flex align-items-center justify-content-around mb-4">
+            <button
+              class="btn btn-lg btn-primary"
+              (click)="onPunch()">
+              Punch
+            </button>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>

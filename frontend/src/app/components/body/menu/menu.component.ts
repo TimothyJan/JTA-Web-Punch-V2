@@ -7,7 +7,7 @@ import { JantekService } from 'src/app/service/jantek.service';
   styleUrls: ['./menu.component.scss']
 })
 export class MenuComponent implements OnInit{
-  username = "";
+  username: string;
 
   constructor(private _jantekService: JantekService) {}
 

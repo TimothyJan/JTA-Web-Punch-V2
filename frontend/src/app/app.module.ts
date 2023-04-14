@@ -26,6 +26,8 @@ import { DateTimeComponent } from './components/header/date-time/date-time.compo
 import { LoginComponent } from './components/body/login/login.component';
 import { BodyComponent } from './components/body/body.component';
 import { MenuComponent } from './components/body/menu/menu.component';
+import { AlertModule } from './components/header/_alert';
+import { PunchComponent } from './components/body/punch/punch.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +37,7 @@ import { MenuComponent } from './components/body/menu/menu.component';
     LoginComponent,
     BodyComponent,
     MenuComponent,
+    PunchComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,6 +57,7 @@ import { MenuComponent } from './components/body/menu/menu.component';
     MdbTabsModule,
     MdbTooltipModule,
     MdbValidationModule,
+    AlertModule
   ],
   providers: [],
   bootstrap: [AppComponent]
