@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginInfo } from 'src/app/models/login-info';
-import { AuthService } from 'src/app/service/auth.service';
 import { JantekService } from 'src/app/service/jantek.service';
 
 @Component({
@@ -15,7 +14,6 @@ export class LoginComponent implements OnInit{
 
   constructor(
     private _jantekService: JantekService,
-    private _authService: AuthService
     ) {}
 
   ngOnInit(): void {
@@ -50,7 +48,7 @@ export class LoginComponent implements OnInit{
     this.employeeNumber = (<HTMLInputElement>document.getElementById("Employee-Number")).value;
     this.cardNumber = (<HTMLInputElement>document.getElementById("Card-Number")).value;
     var loginInfo = new LoginInfo(this.employeeNumber, this.cardNumber)
-    if (this._authService.login(loginInfo)) {
+    if (this._jantekService.login(loginInfo)) {
       console.log("Correct Info");
     } else {
       console.log("Wrong info");

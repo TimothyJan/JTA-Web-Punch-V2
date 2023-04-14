@@ -25,6 +25,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { DateTimeComponent } from './components/header/date-time/date-time.component';
 import { LoginComponent } from './components/body/login/login.component';
 import { BodyComponent } from './components/body/body.component';
+import { MenuComponent } from './components/body/menu/menu.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { BodyComponent } from './components/body/body.component';
     HeaderComponent,
     DateTimeComponent,
     LoginComponent,
-    BodyComponent
+    BodyComponent,
+    MenuComponent,
   ],
   imports: [
     BrowserModule,

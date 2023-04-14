@@ -1,6 +1,7 @@
 
+
 <div *ngIf="isAuthenticated; else loginBlock">
-  Welcome!
+  <app-menu></app-menu>
 </div>
 
 <ng-template #loginBlock>
