@@ -28,3 +28,17 @@ html body {
   text-align: center;
   color: #00228C;
 }
+
+.alert {
+  position: relative;
+  padding: 1.25rem 1.5rem;
+  margin: auto;
+  border: 1px solid transparent;
+  border-radius: 0.5rem;
+  width: auto;
+  display: inline-block;
+}
+
+.btn {
+  width: 100px;
+}

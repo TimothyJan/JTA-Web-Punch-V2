@@ -10,14 +10,14 @@ export class DateTimeComponent implements OnInit{
   currentDateTime = new Date();
 
   /** wp_getinfo */
-  companyName = "";
-  dateFormat = "";
-  timeFormat = "";
-  weekStartDate = "";
-  lvl1Label = "";
-  lvl2Label = "";
-  lvl3Label = "";
-  lvl3LabelShort = "";
+  companyName: string;
+  dateFormat: string;
+  timeFormat: string;
+  weekStartDate: string;
+  lvl1Label: string;
+  lvl2Label: string;
+  lvl3Label: string;
+  lvl3LabelShort: string;
 
   constructor(
     private _jantekService: JantekService

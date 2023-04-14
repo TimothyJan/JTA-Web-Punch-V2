@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { UserInfo } from '../models/user-info';
 import { LoginInfo } from '../models/login-info';
+import { Punch } from '../models/punch';
+import { AlertService } from '../components/header/_alert';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +13,9 @@ export class JantekService {
   isAuthenticatedChange: Subject<boolean> = new Subject<boolean>();
   dummyUser1 = new UserInfo("MICHELLE PETERSON", [], "201","201");
 
-  constructor() { }
+  constructor(
+    public alertService: AlertService
+  ) { }
 
   get_wp_getinfo() {
     let data = {
@@ -127,6 +131,26 @@ export class JantekService {
       return true;
     }
     return false;
+  }
+
+  onPunch(punchInfo: Punch) {
+    let serverResponse = true;
+    if (serverResponse) {
+      /* Add punch to dummyUser punchlist */
+      this.dummyUser1.punches.push(punchInfo);
+
+      let punchType = punchInfo.punchType;
+      let clockType = this.get_wp_getpunchcfg().clocktype;
+      let currentDateTime = "";
+      if (clockType == 1) {
+        currentDateTime = punchInfo.dateTime.toLocaleTimeString();
+      } else {
+        currentDateTime = punchInfo.dateTime.getHours() + ":" + punchInfo.dateTime.getMinutes() + ":" + punchInfo.dateTime.getSeconds();
+      }
+      this.alertService.success(punchType + " accepted at " + currentDateTime);
+    } else {
+      this.alertService.error('Punch is not allowed');
+    }
   }
 
 }
