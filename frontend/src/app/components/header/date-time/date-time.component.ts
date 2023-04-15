@@ -46,10 +46,10 @@ export class DateTimeComponent implements OnInit{
     this.dateFormat = this.dateFormatDisplay(cfg.dateformat);
     this.timeFormat = this.timeFormatDisplay(cfg.timeformat);
     this.weekStartDate = this.weekStart(cfg.wkstart);
-    console.log("wp_getinfo orient: " + cfg.orient);
-    console.log("wp_getinfo size: " + cfg.size);
-    console.log("wp_getinfo memfore: " + cfg.memfore);
-    console.log("wp_getinfo memback: " + cfg.memback);
+    // console.log("wp_getinfo orient: " + cfg.orient);
+    // console.log("wp_getinfo size: " + cfg.size);
+    // console.log("wp_getinfo memfore: " + cfg.memfore);
+    // console.log("wp_getinfo memback: " + cfg.memback);
   }
 
   dateFormatDisplay(dateformat: number): string {

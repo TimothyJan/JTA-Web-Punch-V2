@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit{
   }
 
   read_wp_getpunchcfg(): void {
+    /** Get LoginType */
     this.loginType = this.FkLoginTypeDesc(this._jantekService.get_wp_getpunchcfg().logintype)
   }
 

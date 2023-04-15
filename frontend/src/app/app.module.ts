@@ -27,7 +27,8 @@ import { LoginComponent } from './components/body/login/login.component';
 import { BodyComponent } from './components/body/body.component';
 import { MenuComponent } from './components/body/menu/menu.component';
 import { AlertModule } from './components/header/_alert';
-import { PunchComponent } from './components/body/punch/punch.component';
+import { PunchComponent } from './components/body/menu/punch/punch.component';
+import { FunctionKeyComponent } from './components/body/menu/function-key/function-key.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { PunchComponent } from './components/body/punch/punch.component';
     BodyComponent,
     MenuComponent,
     PunchComponent,
+    FunctionKeyComponent,
   ],
   imports: [
     BrowserModule,
