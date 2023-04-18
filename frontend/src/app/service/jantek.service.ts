@@ -119,6 +119,22 @@ export class JantekService {
       "msg2": "",
       "msg3": "",
       "PC": 7
+      },
+      "fk7": {
+        "fktype": 12,
+        "caption": "Break Start",
+        "msg1": "",
+        "msg2": "",
+        "msg3": "",
+        "PC": 0
+      },
+      "fk8": {
+        "fktype": 13,
+        "caption": "Break End",
+        "msg1": "",
+        "msg2": "",
+        "msg3": "",
+        "PC": 0
       }
     }
     return data;
@@ -150,6 +166,17 @@ export class JantekService {
       this.alertService.success(punchType + " accepted at " + currentDateTime);
     } else {
       this.alertService.error('Punch is not allowed');
+    }
+  }
+
+  onViewLastPunch() {
+    if (this.dummyUser1.punches.length > 0) {
+      let lastPunch = this.dummyUser1.punches[this.dummyUser1.punches.length - 1];
+      let lastPunchType = lastPunch.punchType;
+      let lastPunchTime = new Date(lastPunch.dateTime);
+      this.alertService.success("Last punch accepted at " + lastPunchTime + " " + lastPunchType)
+    } else {
+      this.alertService.error("No last punch recorded");
     }
   }
 

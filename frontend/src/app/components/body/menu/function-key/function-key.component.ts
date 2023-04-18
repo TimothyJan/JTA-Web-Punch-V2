@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FunctionKey } from 'src/app/models/function-key';
 
 @Component({
   selector: 'app-function-key',
@@ -7,16 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FunctionKeyComponent implements OnInit {
   caption: string;
+  @Input() fkParams = new FunctionKey(0, "");
+  @Output() clicked = new EventEmitter<FunctionKey>();
 
   constructor() {}
 
   ngOnInit(): void {
-    this.caption = "Test Button"
+    this.caption = this.fkParams.caption;
   }
 
   onClick() {
-    console.log("Key Clicked!");
-
+    /** Emits FunctionKey */
+    this.clicked.emit(this.fkParams);
   }
 
 }
