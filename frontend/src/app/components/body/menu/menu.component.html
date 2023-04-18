@@ -6,10 +6,82 @@
       <h3 class = "text-center welcome-text">{{ username }}!</h3>
 
       <app-punch></app-punch>
+
     </div>
 
     <div class="col-lg-6">
-      <app-function-key></app-function-key>
+      <div *ngIf="cfg['fk1']">
+        <app-function-key
+          [fkParams]="cfg.fk1"
+          (clicked)="onFunctionKeyClick($event)">
+        </app-function-key>
+      </div>
+      <div *ngIf="cfg['fk2']">
+        <app-function-key
+          [fkParams]="cfg.fk2"
+          (clicked)="onFunctionKeyClick($event)">
+        </app-function-key>
+      </div>
+      <div *ngIf="cfg['fk3']">
+        <app-function-key
+          [fkParams]="cfg.fk3"
+          (clicked)="onFunctionKeyClick($event)">
+        </app-function-key>
+      </div>
+      <div *ngIf="cfg['fk4']">
+        <app-function-key
+          [fkParams]="cfg.fk4"
+          (clicked)="onFunctionKeyClick($event)">
+        </app-function-key>
+      </div>
+      <div *ngIf="cfg['fk5']">
+        <app-function-key
+          [fkParams]="cfg.fk5"
+          (clicked)="onFunctionKeyClick($event)">
+        </app-function-key>
+      </div>
+      <div *ngIf="cfg['fk6']">
+        <app-function-key
+          [fkParams]="cfg.fk6"
+          (clicked)="onFunctionKeyClick($event)">
+        </app-function-key>
+      </div>
+      <div *ngIf="cfg['fk7']">
+        <app-function-key
+          [fkParams]="cfg.fk7"
+          (clicked)="onFunctionKeyClick($event)">
+        </app-function-key>
+      </div>
+      <div *ngIf="cfg['fk8']">
+        <app-function-key
+          [fkParams]="cfg.fk8"
+          (clicked)="onFunctionKeyClick($event)">
+        </app-function-key>
+      </div>
+      <div *ngIf="cfg['fk9']">
+        <app-function-key
+          [fkParams]="cfg.fk9"
+          (clicked)="onFunctionKeyClick($event)">
+        </app-function-key>
+      </div>
+      <div *ngIf="cfg['fk10']">
+        <app-function-key
+          [fkParams]="cfg.fk10"
+          (clicked)="onFunctionKeyClick($event)">
+        </app-function-key>
+      </div>
+      <div *ngIf="cfg['fk11']">
+        <app-function-key
+          [fkParams]="cfg.fk11"
+          (clicked)="onFunctionKeyClick($event)">
+        </app-function-key>
+      </div>
+      <div *ngIf="cfg['fk12']">
+        <app-function-key
+          [fkParams]="cfg.fk12"
+          (clicked)="onFunctionKeyClick($event)">
+        </app-function-key>
+      </div>
     </div>
   </div>
 </div>
