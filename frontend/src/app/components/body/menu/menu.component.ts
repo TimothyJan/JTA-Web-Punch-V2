@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FunctionKey } from 'src/app/models/function-key';
+import { MsgEntry } from 'src/app/models/msg-entry.model';
 import { Punch } from 'src/app/models/punch';
 import { JantekService } from 'src/app/service/jantek.service';
 
@@ -29,7 +30,6 @@ export class MenuComponent implements OnInit{
   onFunctionKeyClick(fkParams:FunctionKey): string {
     /** Handles function key clicks */
     this.functionKeyParams = fkParams;
-    console.log(this.functionKeyParams);
 
     var desc = "";
     switch (this.functionKeyParams.fktype) {
@@ -39,33 +39,14 @@ export class MenuComponent implements OnInit{
         break;
       case 2:
         desc = "In";
+        this.onPunchIn();
         break;
       case 3:
         desc = "Out";
+        this.onPunchOut();
         break;
-      case 4:
+      case 4: /** INCOMPLETE */
         desc = "Swipe-and-go w/ L3 change";
-        break;
-      case 5:
-        desc = "L1 change";
-        break;
-      case 6:
-        desc = "L2 change";
-        break;
-      case 7:
-        desc = "L3 change";
-        break;
-      case 8:
-        desc = "L1, L2 change";
-        break;
-      case 9:
-        desc = "L1, L3 change";
-        break;
-      case 10:
-        desc = "L2, L3 change";
-        break;
-      case 11:
-        desc = "L1, L2, L3 change";
         break;
       case 12:
         desc = "Break Start";
@@ -95,7 +76,7 @@ export class MenuComponent implements OnInit{
         break;
       case 19:
         desc = "View Total Hours";
-        // this.onViewTotalHours();
+        this._jantekService.onViewTotalHours();
         break;
       case 20:
         desc = "Calculated Pay Code";
@@ -116,6 +97,14 @@ export class MenuComponent implements OnInit{
     let currentDateTime = new Date();
     let newPunch = new Punch("OUT", currentDateTime);
     this._jantekService.onPunch(newPunch);
+  }
+
+  onMsgEntry(msgEntry: MsgEntry): void {
+    /**
+     * Handles msgEntry with fktypes 4-11, 16 and 17 */
+    this._jantekService.onMsgEntry(this.functionKeyParams, msgEntry);
+    /** resets the functionKeyParams and closes the msgEntry component */
+    this.functionKeyParams = new FunctionKey(0, "");
   }
 
 }
