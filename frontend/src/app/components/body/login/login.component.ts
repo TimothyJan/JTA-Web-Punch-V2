@@ -51,10 +51,7 @@ export class LoginComponent implements OnInit{
     this.employeeNumber = (<HTMLInputElement>document.getElementById("Employee-Number")).value;
     this.cardNumber = (<HTMLInputElement>document.getElementById("Card-Number")).value;
     var loginInfo = new LoginInfo(this.employeeNumber, this.cardNumber)
-    if (this._jantekService.login(loginInfo)) {
-    } else {
-      this.alertService.error("Incorrect login");
-    }
+    this._jantekService.login(loginInfo);
   }
 
   onCancel() {

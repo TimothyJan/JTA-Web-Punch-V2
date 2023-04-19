@@ -20,6 +20,7 @@ export class PunchComponent implements OnInit {
   }
 
   read_wp_getpunchcfg(): void {
+    /** Reads the wp_getpunchcfg and gets the clockType for display */
     this.clockType = this.FkClockTypeDesc(this._jantekService.get_wp_getpunchcfg().clocktype)
   }
 

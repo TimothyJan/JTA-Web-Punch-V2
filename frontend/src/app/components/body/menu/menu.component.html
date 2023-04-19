@@ -5,6 +5,7 @@
       <h3 class = "text-center welcome-text">Welcome </h3>
       <h3 class = "text-center welcome-text">{{ username }}!</h3>
 
+      <!-- If functionkey has a msgEntry option, open msgEntry -->
       <div *ngIf="functionKeyParams.msg1; else punchBlock">
         <app-msg-entry
           [fkParams]="functionKeyParams"

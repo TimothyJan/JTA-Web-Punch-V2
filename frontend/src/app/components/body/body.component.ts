@@ -7,14 +7,14 @@ import { JantekService } from 'src/app/service/jantek.service';
   styleUrls: ['./body.component.scss']
 })
 export class BodyComponent {
-  isAuthenticated = true;
+  isAuthenticated = false;
   _authSubscription: any;
 
   constructor(private _jantekService: JantekService) {
-    // this.isAuthenticated = _jantekService.isAuthenticated;
-    // this._authSubscription = _jantekService.isAuthenticatedChange.subscribe((value) => {
-    //   this.isAuthenticated = value;
-    // });
+    this.isAuthenticated = _jantekService.isAuthenticated;
+    this._authSubscription = _jantekService.isAuthenticatedChange.subscribe((value) => {
+      this.isAuthenticated = value;
+    });
   }
 
   ngOnDestroy() {

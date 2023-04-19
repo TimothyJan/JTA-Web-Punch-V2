@@ -36,6 +36,7 @@ export class DateTimeComponent implements OnInit{
   }
 
   read_wp_getinfo() {
+    /** Gets wp_getinfo */
     let cfg = this._jantekService.get_wp_getinfo();
     console.log("wp_getinfo status: " + cfg.status)
     this.companyName = cfg.companyname

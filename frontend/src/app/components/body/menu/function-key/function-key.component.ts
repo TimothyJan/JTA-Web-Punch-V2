@@ -18,7 +18,7 @@ export class FunctionKeyComponent implements OnInit {
   }
 
   onClick() {
-    /** Emits FunctionKey */
+    /** Emits FunctionKey Click*/
     this.clicked.emit(this.fkParams);
   }
 

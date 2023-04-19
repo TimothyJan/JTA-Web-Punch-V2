@@ -24,7 +24,6 @@ export class MenuComponent implements OnInit{
   read_wp_getpunchcfg(): void {
     /** Get Function Keys */
     this.cfg = this._jantekService.get_wp_getpunchcfg();
-    console.log(this.cfg);
   }
 
   onFunctionKeyClick(fkParams:FunctionKey): string {
@@ -45,8 +44,9 @@ export class MenuComponent implements OnInit{
         desc = "Out";
         this.onPunchOut();
         break;
-      case 4: /** INCOMPLETE */
+      case 4:
         desc = "Swipe-and-go w/ L3 change";
+        this.onSwipeAndGo();
         break;
       case 12:
         desc = "Break Start";
@@ -88,20 +88,28 @@ export class MenuComponent implements OnInit{
   }
 
   onPunchIn() {
+    /** Emits 'IN' Punch with currentDateTime*/
     let currentDateTime = new Date();
     let newPunch = new Punch("IN", currentDateTime);
     this._jantekService.onPunch(newPunch);
   }
 
   onPunchOut() {
+    /** Emits 'OUT' Punch with currentDateTime*/
     let currentDateTime = new Date();
     let newPunch = new Punch("OUT", currentDateTime);
     this._jantekService.onPunch(newPunch);
   }
 
+  onSwipeAndGo(): void {
+    /** Emits 'SWIPEANDGO' Punch with currentDateTime*/
+    let currentDateTime = new Date();
+    var newPunch = new Punch("SWIPEANDGO", currentDateTime);
+    this._jantekService.onPunch(newPunch);
+  }
+
   onMsgEntry(msgEntry: MsgEntry): void {
-    /**
-     * Handles msgEntry with fktypes 4-11, 16 and 17 */
+    /** Handles function key clicks with msgEntry for fktypes 4-11, 16 and 17 */
     this._jantekService.onMsgEntry(this.functionKeyParams, msgEntry);
     /** resets the functionKeyParams and closes the msgEntry component */
     this.functionKeyParams = new FunctionKey(0, "");

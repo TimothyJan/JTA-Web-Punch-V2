@@ -47,7 +47,7 @@ export class MsgEntryComponent implements OnInit {
   }
 
   onCancel(): void {
-    /** Resets inputs to empty */
+    /** Resets user inputs to empty */
     if (this.fkParams.msg1) {
       this.msgEntry1 = "";
     }

@@ -1,4 +1,7 @@
 ﻿<div *ngFor="let alert of alerts" class="{{cssClass(alert)}}">
-  <div [innerHTML]="alert.message"></div>
+  <!-- <div [innerHTML]="alert.message"> -->
+  <div>
+    {{ alert.message }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </div>
   <button type="button" class="btn-close" (click)="removeAlert(alert)"></button>
 </div>

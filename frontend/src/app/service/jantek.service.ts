@@ -162,8 +162,10 @@ export class JantekService {
     /* Check if user in database */
     if(loginInfo.cardNumber == this.dummyUser1.cardNumber && loginInfo.employeeNumber == this.dummyUser1.employeeNumber) {
       this.isAuthenticatedChange.next(true);
+      this.alertService.success("Login Successful");
       return true;
     }
+    this.alertService.error("Incorrect login");
     return false;
   }
 
@@ -217,7 +219,7 @@ export class JantekService {
 
     switch (functionKeyParams.fktype) {
       case 4: // Swipe-and-go w/ L3 change
-
+        this.checkL3(msgEntry.msgEntry1);
       case 5: // L1 change
         this.checkL1(msgEntry.msgEntry1);
         break;
@@ -251,6 +253,7 @@ export class JantekService {
         } else {
           this.alertService.error("Hour Entry Denied");
         }
+        break;
       case 17: // Amount Entry
         let amountEntryAllowed = true;
         if (amountEntryAllowed) {
@@ -258,6 +261,7 @@ export class JantekService {
         } else {
           this.alertService.error("Amount Entry Denied");
         }
+        break;
     }
   }
 
