@@ -1,0 +1,49 @@
+<div class="container py-2 h-15">
+  <div class="row d-flex align-items-center justify-content-center h-100">
+    <div class="col-lg-10 col-md-6">
+      <!-- Function Key message -->
+      <div class="form-group mb-4">
+        <label class="form-label" for="msg">{{ fkParams.msg1 }}:</label>
+        <input
+          name="msgEntry1"
+          id="msgEntry1"
+          placeholder=""
+          class="form-control form-control-lg visible"
+          [(ngModel)]="msgEntry1"/>
+      </div>
+      <div *ngIf="msg2" class="form-group mb-4">
+        <label class="form-label" for="msg">{{ fkParams.msg2 }}:</label>
+        <input
+          name="msgEntry2"
+          id="msgEntry2"
+          placeholder=""
+          class="form-control form-control-lg visible"
+          [(ngModel)]="msgEntry2"/>
+      </div>
+      <div *ngIf="msg3" class="form-group mb-4">
+        <label class="form-label" for="msg">{{ fkParams.msg3 }}:</label>
+        <input
+          name="msgEntry3"
+          id="msgEntry3"
+          placeholder=""
+          class="form-control form-control-lg visible"
+          [(ngModel)]="msgEntry3"/>
+      </div>
+
+      <!-- Submit button -->
+      <div class="d-flex justify-content-around align-items-center">
+        <button
+          type="submit"
+          class="btn btn-lg btn-primary btn-punch"
+          (click)="onEnter()">
+          Enter
+        </button>
+        <button
+          class="btn btn-lg btn-primary btn-punch"
+          (click)="onCancel()">
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

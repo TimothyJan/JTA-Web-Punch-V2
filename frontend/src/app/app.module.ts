@@ -29,6 +29,8 @@ import { MenuComponent } from './components/body/menu/menu.component';
 import { AlertModule } from './components/header/_alert';
 import { PunchComponent } from './components/body/menu/punch/punch.component';
 import { FunctionKeyComponent } from './components/body/menu/function-key/function-key.component';
+import { MsgEntryComponent } from './components/body/msg-entry/msg-entry.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,7 @@ import { FunctionKeyComponent } from './components/body/menu/function-key/functi
     MenuComponent,
     PunchComponent,
     FunctionKeyComponent,
+    MsgEntryComponent,
   ],
   imports: [
     BrowserModule,
@@ -59,7 +62,8 @@ import { FunctionKeyComponent } from './components/body/menu/function-key/functi
     MdbTabsModule,
     MdbTooltipModule,
     MdbValidationModule,
-    AlertModule
+    AlertModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

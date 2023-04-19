@@ -4,6 +4,8 @@ import { UserInfo } from '../models/user-info';
 import { LoginInfo } from '../models/login-info';
 import { Punch } from '../models/punch';
 import { AlertService } from '../components/header/_alert';
+import { MsgEntry } from '../models/msg-entry.model';
+import { FunctionKey } from '../models/function-key';
 
 @Injectable({
   providedIn: 'root'
@@ -11,13 +13,19 @@ import { AlertService } from '../components/header/_alert';
 export class JantekService {
   isAuthenticated: boolean = false;
   isAuthenticatedChange: Subject<boolean> = new Subject<boolean>();
+
+  /** Dummy Info */
   dummyUser1 = new UserInfo("MICHELLE PETERSON", [], "201","201");
+  dummyL1 = ['10'];
+  dummyL2 = ['10', '20'];
+  dummyL3 = ['10', '30'];
 
   constructor(
     public alertService: AlertService
   ) { }
 
   get_wp_getinfo() {
+    /** Gets wp_getinfo */
     let data = {
       "status": "OK",
       "companyname": "Jantek Electronics, Inc.",
@@ -37,6 +45,7 @@ export class JantekService {
   }
 
   get_wp_getmodule() {
+    /** Gets wp_getmodule */
     let data = {
       "status": "OK",
       "accrual": 1,
@@ -67,6 +76,7 @@ export class JantekService {
   }
 
   get_wp_getpunchcfg() {
+    /** Gets wp_getpunchcfg */
     let data = {
       "status": "OK",
       "logintype": 1,
@@ -113,14 +123,22 @@ export class JantekService {
       "PC": 0
       },
       "fk6": {
-      "fktype": 17,
-      "caption": "Tip Entry",
-      "msg1": "Enter Tip",
+      "fktype": 16,
+      "caption": "Hour Entry",
+      "msg1": "Enter Hour",
       "msg2": "",
       "msg3": "",
       "PC": 7
       },
       "fk7": {
+        "fktype": 17,
+        "caption": "Amount Entry",
+        "msg1": "Enter Amount",
+        "msg2": "",
+        "msg3": "",
+        "PC": 7
+        },
+      "fk8": {
         "fktype": 12,
         "caption": "Break Start",
         "msg1": "",
@@ -128,7 +146,7 @@ export class JantekService {
         "msg3": "",
         "PC": 0
       },
-      "fk8": {
+      "fk9": {
         "fktype": 13,
         "caption": "Break End",
         "msg1": "",
@@ -140,7 +158,7 @@ export class JantekService {
     return data;
   }
 
-  login(loginInfo: LoginInfo) {
+  login(loginInfo: LoginInfo): boolean {
     /* Check if user in database */
     if(loginInfo.cardNumber == this.dummyUser1.cardNumber && loginInfo.employeeNumber == this.dummyUser1.employeeNumber) {
       this.isAuthenticatedChange.next(true);
@@ -149,7 +167,8 @@ export class JantekService {
     return false;
   }
 
-  onPunch(punchInfo: Punch) {
+  onPunch(punchInfo: Punch): void {
+    /** Handles punches (In, Out, Swipe and Go) */
     let serverResponse = true;
     if (serverResponse) {
       /* Add punch to dummyUser punchlist */
@@ -169,7 +188,8 @@ export class JantekService {
     }
   }
 
-  onViewLastPunch() {
+  onViewLastPunch(): void {
+    /** Handles viewing the last punch */
     if (this.dummyUser1.punches.length > 0) {
       let lastPunch = this.dummyUser1.punches[this.dummyUser1.punches.length - 1];
       let lastPunchType = lastPunch.punchType;
@@ -177,6 +197,94 @@ export class JantekService {
       this.alertService.success("Last punch accepted at " + lastPunchTime + " " + lastPunchType)
     } else {
       this.alertService.error("No last punch recorded");
+    }
+  }
+
+  onViewTotalHours(): void {
+    /** Handles View Total Hours */
+    let serverResponse = true;
+    let totalHours = 13;
+    if (serverResponse) {
+      this.alertService.success("Total Hours: " + totalHours + " hrs.")
+    } else {
+      this.alertService.error("Cannot view total hours");
+    }
+  }
+
+  onMsgEntry(functionKeyParams: FunctionKey, msgEntry: MsgEntry): void {
+    /** Handles functions involving msgEntries */
+    console.log(msgEntry);
+
+    switch (functionKeyParams.fktype) {
+      case 4: // Swipe-and-go w/ L3 change
+
+      case 5: // L1 change
+        this.checkL1(msgEntry.msgEntry1);
+        break;
+      case 6: // L2 change
+        this.checkL2(msgEntry.msgEntry1);
+        break;
+      case 7: // L3 change
+        this.checkL3(msgEntry.msgEntry1);
+        break;
+      case 8: // L1, L2 change
+        this.checkL1(msgEntry.msgEntry1);
+        this.checkL2(msgEntry.msgEntry2);
+        break;
+      case 9: // L1, L3 change
+        this.checkL1(msgEntry.msgEntry1);
+        this.checkL3(msgEntry.msgEntry2);
+        break;
+      case 10: // L2, L3 change
+        this.checkL2(msgEntry.msgEntry1);
+        this.checkL3(msgEntry.msgEntry2);
+        break;
+      case 11: // L1, L2, L3 change
+        this.checkL1(msgEntry.msgEntry1);
+        this.checkL2(msgEntry.msgEntry2);
+        this.checkL3(msgEntry.msgEntry3);
+        break;
+      case 16: // Hour Entry
+        let hourEntryAllowed = true;
+        if (hourEntryAllowed) {
+          this.alertService.success("Hour Entry Accepted");
+        } else {
+          this.alertService.error("Hour Entry Denied");
+        }
+      case 17: // Amount Entry
+        let amountEntryAllowed = true;
+        if (amountEntryAllowed) {
+          this.alertService.success("Amount Entry Accepted");
+        } else {
+          this.alertService.error("Amount Entry Denied");
+        }
+    }
+  }
+
+  checkL1(msgEntry: string): void {
+    /** Handles L1 Changes */
+    if ((this.dummyL1.includes(msgEntry))) {
+      this.alertService.success("L1 Change Accepted");
+    } else {
+      this.alertService.error("COMPANY " + msgEntry + " NOT FOUND");
+    }
+  }
+
+  checkL2(msgEntry: string): void {
+    /** Handles L2 Changes */
+    if ((this.dummyL2.includes(msgEntry))) {
+      this.alertService.success("L2 Change Accepted");
+    } else {
+      this.alertService.error("BRANCH " + msgEntry + " NOT FOUND");
+    }
+  }
+
+  checkL3(msgEntry: string): void {
+    /** Handles L3 Changes */
+    if ((this.dummyL3.includes(msgEntry))) {
+      this.alertService.success("L3 Change Accepted");
+    } else {
+      this.alertService.error("DEPARTMENT " + msgEntry + " NOT FOUND");
     }
   }
 
